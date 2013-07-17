@@ -2,6 +2,7 @@
 
 import sys
 import SocketServer
+import threading
 
 class server(object):
   def __init__(self):
@@ -10,7 +11,7 @@ class server(object):
   def run(self):
     myaddr = ('', self.myPort) #'' означает локальный хост
     server = SocketServer.ThreadingTCPServer(myaddr, MyClientHandler)
-    server.serve_forever()
+    self.t = threading.Thread(target=server.serve_forever)
 
 class MyClientHandler(SocketServer.BaseRequestHandler):
   def handle(self): # для каждого клиента
