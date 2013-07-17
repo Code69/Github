@@ -16,7 +16,7 @@ class ConsoleUI(cmd.Cmd):
     print "Несуществующая команда"
   def do_say (self, line):
     from socket import *
-    serverHost = '10.85.30.21'  # имя сервера, например: 'starship.python.net'
+    serverHost = '10.85.136.43'  # имя сервера, например: 'starship.python.net'
     serverPort = 51238        # незарезервированный порт, используемый сервером
     sockobj = socket(AF_INET, SOCK_STREAM)      # создать объект сокета TCP/IP
     sockobj.connect((serverHost, serverPort))   # соединение с сервером и портом
