@@ -9,9 +9,14 @@ class server(object):
     self.myPort = 51238 # использовать незарезервированный номер порта
 
   def run(self):
+    self.t = threading.Thread(target=self.__run)
+    self.t.daemon = True
+    self.t.start()
+
+  def __run(self):
     myaddr = ('', self.myPort) #'' означает локальный хост
     server = SocketServer.ThreadingTCPServer(myaddr, MyClientHandler)
-    self.t = threading.Thread(target=server.serve_forever)
+    server.serve_forever()    
 
 class MyClientHandler(SocketServer.BaseRequestHandler):
   def handle(self): # для каждого клиента
